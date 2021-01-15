@@ -12,6 +12,21 @@ import InventoryItem from "./InventoryItem.svelte";
 
 <style>
 	:global(html){
-		font-size: 12px;
+		font-size: 6px;
+	}
+	@media only screen and (min-width: 300px){
+		:global(html){
+			font-size: 8px;
+		}
+	}
+	@media only screen and (min-width: 380px){
+		:global(html){
+			font-size: 10px;
+		}
+	}
+	@media only screen and (min-width: 580px){
+		:global(html){
+			font-size: 12px;
+		}
 	}
 </style>
