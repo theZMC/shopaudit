@@ -1,76 +1,45 @@
 <script>
 import InventoryItem from "./InventoryItem.svelte";
 import InventoryInfo from "./InventoryInfo.svelte";
+export let InventoryItems;
 
+let displayList = InventoryItems;
+let searchterm;
+
+const itemFind = (arr, search) => {
+    let regex = new RegExp(search, "i");
+    let results = [];
+    for(var i = 0; i < arr.length; i++){
+        let keymatch = false;
+        for (let key in arr[i]){
+            if(arr[i][key].match(regex)){
+                keymatch = true;
+            }
+        }
+        keymatch ? results.push(arr[i]) : false;
+    }
+    return results;
+}
+
+const updateList = (obj) => {
+    displayList = obj;
+}
+
+const handleSearch = () => {
+    let found = itemFind(InventoryItems, searchterm);
+    found ? updateList(found) : updateList(InventoryItems);
+}
 </script>
 <main>
     <div>
         <InventoryInfo />
-        <input type="text" placeholder="Search" />
-        <InventoryItem
-            productName="MICHELIN XZA2 295/75R22.5"
-            productNumber="M31445"
-        />
-        <InventoryItem
-            productName="MICHELIN XZA2 295/75R22.5"
-            productNumber="M31445"
-        />
-        <InventoryItem
-            productName="MICHELIN XZA2 295/75R22.5"
-            productNumber="M31445"
-        />
-        <InventoryItem
-            productName="MICHELIN XZA2 295/75R22.5"
-            productNumber="M31445"
-        />
-        <InventoryItem
-            productName="MICHELIN XZA2 295/75R22.5"
-            productNumber="M31445"
-        />
-        <InventoryItem
-            productName="MICHELIN XZA2 295/75R22.5"
-            productNumber="M31445"
-        />
-        <InventoryItem
-            productName="MICHELIN XZA2 295/75R22.5"
-            productNumber="M31445"
-        />
-        <InventoryItem
-            productName="MICHELIN XZA2 295/75R22.5"
-            productNumber="M31445"
-        />
-        <InventoryItem
-            productName="MICHELIN XZA2 295/75R22.5"
-            productNumber="M31445"
-        />
-        <InventoryItem
-            productName="MICHELIN XZA2 295/75R22.5"
-            productNumber="M31445"
-        />
-        <InventoryItem
-            productName="MICHELIN XZA2 295/75R22.5"
-            productNumber="M31445"
-        />
-        <InventoryItem
-            productName="MICHELIN XZA2 295/75R22.5"
-            productNumber="M31445"
-        />
-        <InventoryItem
-            productName="MICHELIN XZA2 295/75R22.5"
-            productNumber="M31445"
-        />
-        <InventoryItem
-            productName="MICHELIN XZA2 295/75R22.5"
-            productNumber="M31445"
-        />
-        <InventoryItem
-            productName="MICHELIN XZA2 295/75R22.5"
-            productNumber="M31445"
-        />
-        <InventoryItem
-            productName="MICHELIN XZA2 295/75R22.5"
-            productNumber="M31445"
-        />
+        <input type="text" placeholder="Search" on:change={handleSearch} bind:value={searchterm}/>
+        {#each displayList as Item}
+            <InventoryItem
+                productName={Item.productName}
+                productNumber={Item.productNumber}
+            />
+        {/each}
     </div>
 </main>
 <style>
@@ -85,6 +54,10 @@ import InventoryInfo from "./InventoryInfo.svelte";
     @media only screen and (max-width: 600px){
         main{
             overflow-y: scroll;
+            width: 100%;
+        }
+        div{
+            max-width: 100%;
         }
     }
     div{

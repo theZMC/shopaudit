@@ -2,6 +2,14 @@
 import Header from "./Header.svelte";
 import InventoryList from "./InventoryList.svelte";
 import Footer from "./Footer.svelte";
+let Items = [
+	{productName: "MICHELIN XTA2 ENRG 295/75R22.5", productNumber: "M44841"},
+	{productName: "MICHELIN XLINE 2 295/75R22.5", productNumber: "M22313"},
+	{productName: "MICHELIN TIRE THING 295/75R22.5", productNumber: "M82141"},
+	{productName: "MICHELIN OTHER TIRE 295/75R22.5", productNumber: "M34581"},
+	{productName: "MICHELIN TIRE TWO 295/75R22.5", productNumber: "M22384"}
+];
+
 </script>
 
 <svelte:head>
@@ -10,7 +18,9 @@ import Footer from "./Footer.svelte";
 </svelte:head>
 <div>
 	<Header />
-	<InventoryList />
+	<InventoryList 
+		InventoryItems={Items}	
+	/>
 	<Footer />
 	<!-- <InventoryItem 
 		productName="Michelin XTA2 255/70R22.5"
@@ -96,6 +106,12 @@ import Footer from "./Footer.svelte";
 			display: grid;
 			grid-template-rows: auto 1fr auto;
 			height: 100vh;
+			width: auto;
 		}
+	}
+	div{
+		display: grid;
+		min-height: 100vh;
+		grid-template-rows: auto 1fr auto;
 	}
 </style>
