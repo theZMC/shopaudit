@@ -14,7 +14,7 @@
     </button>
     <p>
         <span>{productNumber}</span>
-        {productName}
+        <span>{productName}</span>
     </p>
     <input 
         type="number" 
@@ -34,11 +34,14 @@
     }
     div{
         display: grid;
-        background: #eeeeee;
+        background: linear-gradient(#eeeeee, #dddddd);
         grid-template-columns: auto 1fr auto auto;
         grid-gap: .5rem;
-        border-radius: 1rem;
-        border: 1px solid #ccc;
+        border: 1px solid #666;
+        border-top: 1px solid #fff;
+        border-bottom: 3px solid #666;
+        border-radius: .5rem;
+        margin: 0 .5rem;
     }
     div > button{
         line-height: 1rem;
@@ -48,31 +51,31 @@
         outline: none;
         margin: 0;
         color: white;
-        text-shadow: 0px 2px 4px rgba(0,0,0,.5);
+        text-shadow: 0px 2px 2px rgba(0,0,0,.5);
         margin: 5px;
-        margin-top: 1px;
-        box-shadow: 0px 4px 4px rgba(90,90,90,.7);
+        margin-top: 2px;
+        box-shadow: 0px 2px 4px rgba(90,90,90,.7);
         padding: 1rem;
-        border-radius: 1rem;
+        border-radius: .5rem;
     }
     div > button > svg{
-        width: 4rem;
+        width: 2rem;
         margin: 0;
     }
     div > button:first-of-type{
         background: rgb(156,0,0);
-        border-bottom: 4px solid rgb(89,0,0);
+        border-bottom: 2px solid rgb(89,0,0);
         border-top: 1px solid rgb(244,0,0);
     }
     div > button:last-of-type{
         background: rgb(0,134,19);
-        border-bottom: 4px solid rgb(0,85,8);
+        border-bottom: 2px solid rgb(0,85,8);
         border-top: 1px solid rgb(0,210,25);
     }
     div > button:active{
-        border-bottom-width: 2px;
+        border-bottom-width: 1px;
         margin-top: 3px;
-        box-shadow: 0px 2px 3px rgba(90,90,90,.5);
+        box-shadow: 0px 1px 3px rgba(90,90,90,.5);
     }
     div > p{
         margin: 1rem 0;
@@ -82,25 +85,36 @@
         place-content: center;
         font-weight: bolder;
         font-size: 1.2rem;
+        justify-content: space-around;
     }
     div > input{
         font-weight: bolder;
-        font-size: 2.5rem;
+        font-size: 3rem;
         margin: 0;
         padding: 0;
-        max-width: 6rem;
+        min-width: 4rem;
+        max-width: 7rem;
         text-align: center;
         margin: .8rem 0;
         border-radius: .5rem;
-        box-shadow: inset 0px 0px 3px rgba(60,60,60,.2);
+        box-shadow: inset 0px 1px 2px rgba(60,60,60,.2);
+        background: linear-gradient(#fff, #eee);
+        border-bottom: 1px solid #fff;
     }
     div > input:focus{
         outline: none;
     }
-    div > p > span{
+    div > p > span:first-of-type{
         display: block;
         font-weight: bolder;
         color: #676767;
         font-size: 1.8rem;
+    }
+    div > p > span:last-of-type{
+        display: block;
+        font-weight: bolder;
+        font-size: 1.5rem;
+        overflow: ellipsis;
+        line-clamp: 2;
     }
 </style>
