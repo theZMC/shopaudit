@@ -20,6 +20,7 @@
         color: #333333;
         padding: 1rem;
         text-shadow: 0px 1px 0px #eeeeee77;
+        user-select: none;
     }
     div > div{
         display: grid;
@@ -47,7 +48,5 @@
     div > ul > li{
         display: flex;
         justify-content: space-between;
-    }
-    div > ul > li > span{
     }
 </style>

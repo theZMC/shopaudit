@@ -1,6 +1,10 @@
 <script>
+    export let handleDeleteItem;
     export let productName;
     export let productNumber;
+    export let custom;
+    export let itemid;
+    export let expectedQty;
     let count = 0;
     const countUp = () => { if(count < 1000) count++} ;
     const countDown = () => { if(count) count-- };
@@ -13,8 +17,22 @@
         </svg>
     </button>
     <p>
-        <span>{productNumber}</span>
-        <span>{productName}</span>
+        {#if productNumber}
+            <span>{productNumber}</span>
+        {/if}
+        {#if !custom}
+            <span class="expected-qty">BOH: {expectedQty}</span>
+        {/if}
+        {#if custom}
+            <span class="custom-delete">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" on:click={() => handleDeleteItem(itemid)}>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+            </span>
+        {/if}
+        {#if productName}
+            <span>{productName}</span>
+        {/if}
     </p>
     <input 
         type="number" 
@@ -22,7 +40,7 @@
         max=999
     />
     <button on:click|preventDefault={countUp}>
-        <svg class="w-6 h-6" fill="none" stroke="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg fill="none" stroke="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
         </svg>
     </button>
@@ -86,6 +104,9 @@
         font-weight: bolder;
         font-size: 1.2rem;
         justify-content: space-around;
+        position: relative;
+        padding-right: 2.8rem;
+        user-select: none;
     }
     div > input{
         font-weight: bolder;
@@ -109,6 +130,7 @@
         font-weight: bolder;
         color: #676767;
         font-size: 1.8rem;
+        text-transform: uppercase;
     }
     div > p > span:last-of-type{
         display: block;
@@ -116,5 +138,45 @@
         font-size: 1.5rem;
         overflow: ellipsis;
         line-clamp: 2;
+        text-transform: uppercase;
+    }
+    div > p > span:only-child{
+        font-size: 1.8rem;
+        color: black;
+    }
+    div > p > span.custom-delete{
+        float: right;
+        width: 1.5rem;
+        position: absolute;
+        right: 0;
+    }
+    div > p > span.custom-delete > svg{
+        width: 2rem;
+        float: right;
+        padding:.25rem;
+        background: #eee;
+        border-top: 1px solid #fff;
+        border-bottom: 1px solid #aaa;
+        border-radius: .25rem;
+        color: #333;
+        box-shadow: 0px 1px 2px #00000044;
+    }
+    div > p > span.custom-delete > svg:hover{
+        cursor: pointer;
+        background: #f9f9f9;
+    }
+    div > p > span.custom-delete > svg:active{
+        cursor: pointer;
+        background: #f9f9f9;
+        box-shadow: 0px 1px 1px #00000022;
+        border-bottom: none;
+        margin-top: 1px;
+    }
+    div > p > span.expected-qty{
+        position: absolute;
+        color: #aaa;
+        font-size: 1rem;
+        top: 0;
+        right: 0;
     }
 </style>

@@ -3,11 +3,20 @@ import Header from "./Header.svelte";
 import InventoryList from "./InventoryList.svelte";
 import Footer from "./Footer.svelte";
 let Items = [
-	{productName: "MICHELIN XTA2 ENRG 295/75R22.5", productNumber: "M44841"},
-	{productName: "MICHELIN XLINE 2 295/75R22.5", productNumber: "M22313"},
-	{productName: "MICHELIN TIRE THING 295/75R22.5", productNumber: "M82141"},
-	{productName: "MICHELIN OTHER TIRE 295/75R22.5", productNumber: "M34581"},
-	{productName: "MICHELIN TIRE TWO 295/75R22.5", productNumber: "M22384"}
+	{productName: "MICHELIN XTA2 ENRG 295/75R22.5", productNumber: "M44841", custom: false, itemid: 1, expectedQty: 32},
+	{productName: "MICHELIN XLINE 2 295/75R22.5", productNumber: "M22313", custom: false, itemid: 2, expectedQty: 12},
+	{productName: "MICHELIN TIRE THING 295/75R22.5", productNumber: "M82141", custom: false, itemid: 3, expectedQty: 15},
+	{productName: "MICHELIN OTHER TIRE 295/75R22.5", productNumber: "M34581", custom: false, itemid: 4, expectedQty: 4},
+	{productName: "MICHELIN TIRE TWO 295/75R22.5", productNumber: "M22384", custom: true, itemid: 5},
+	{productName: "MICHELIN TIRE TWO 295/75R22.5", productNumber: "M22384", custom: true, itemid: 6},
+	{productName: "MICHELIN TIRE TWO 295/75R22.5", productNumber: "M22384", custom: true, itemid: 7},
+	{productName: "MICHELIN XTA2 ENRG 295/75R22.5", productNumber: "M44841", custom: false, itemid: 8, expectedQty: 32},
+	{productName: "MICHELIN XLINE 2 295/75R22.5", productNumber: "M22313", custom: false, itemid: 9, expectedQty: 12},
+	{productName: "MICHELIN TIRE THING 295/75R22.5", productNumber: "M82141", custom: false, itemid: 10, expectedQty: 15},
+	{productName: "MICHELIN OTHER TIRE 295/75R22.5", productNumber: "M34581", custom: false, itemid: 11, expectedQty: 4},
+	{productName: "MICHELIN TIRE TWO 295/75R22.5", productNumber: "M22384", custom: true, itemid: 12},
+	{productName: "MICHELIN TIRE TWO 295/75R22.5", productNumber: "M22384", custom: true, itemid: 13},
+	{productName: "MICHELIN TIRE TWO 295/75R22.5", productNumber: "M22384", custom: true, itemid: 14}
 ];
 
 </script>
@@ -111,7 +120,7 @@ let Items = [
 	}
 	div{
 		display: grid;
-		min-height: 100vh;
+		height: 100vh;
 		grid-template-rows: auto 1fr auto;
 	}
 </style>
