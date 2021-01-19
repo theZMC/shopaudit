@@ -21,7 +21,10 @@
             <span>{productNumber}</span>
         {/if}
         {#if !custom}
-            <span class="expected-qty">BOH: {expectedQty}</span>
+            <span class="expected-qty">
+                BOH<br />
+                <span>{expectedQty}</span>
+            </span>
         {/if}
         {#if custom}
             <span class="custom-delete">
@@ -37,7 +40,6 @@
     <input 
         type="number" 
         bind:value={count}
-        max=999
     />
     <button on:click|preventDefault={countUp}>
         <svg fill="none" stroke="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -176,7 +178,13 @@
         position: absolute;
         color: #aaa;
         font-size: 1rem;
+        padding: .4rem 0;
         top: 0;
         right: 0;
+        text-align: center;
+        min-width: 2.5rem;
+    }
+    div > p > span.expected-qty > span{
+        font-size: 1.6rem;
     }
 </style>

@@ -1,6 +1,8 @@
 <script>
 import Header from "./Header.svelte";
 import InventoryList from "./InventoryList.svelte";
+import Home from "./Home.svelte";
+import SummaryScreen from "./SummaryScreen.svelte";
 import Footer from "./Footer.svelte";
 let Items = [
 	{productName: "MICHELIN XTA2 ENRG 295/75R22.5", productNumber: "M44841", custom: false, itemid: 1, expectedQty: 32},
@@ -19,6 +21,23 @@ let Items = [
 	{productName: "MICHELIN TIRE TWO 295/75R22.5", productNumber: "M22384", custom: true, itemid: 14}
 ];
 
+let AuditHeader = new Object({
+	storeid: 779, 
+	starttime: new Date("January 17, 2020 13:12:00"), 
+	auditid: 1,
+	status: "Pending",
+	totalitems: 43,
+	totalexpectedqty: 447,
+	iscomplete: false,
+	title: "tires"
+});
+
+let view = "home";
+
+const navToView = (newview) => {
+	view = newview;
+}
+
 </script>
 
 <svelte:head>
@@ -27,9 +46,21 @@ let Items = [
 </svelte:head>
 <div>
 	<Header />
-	<InventoryList 
-		InventoryItems={Items}	
-	/>
+	{#if view == "audit"}
+		<InventoryList 
+			navToView={navToView}
+			InventoryItems={Items}
+			AuditHeader={AuditHeader}
+		/>
+	{/if}
+	{#if view == "summary"}
+		<SummaryScreen />
+	{/if}
+	{#if view == "home"}
+		<Home 
+			storeid = 779
+		/>
+	{/if}
 	<Footer />
 	<!-- <InventoryItem 
 		productName="Michelin XTA2 255/70R22.5"

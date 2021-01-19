@@ -2,6 +2,8 @@
 import InventoryItem from "./InventoryItem.svelte";
 import InventoryInfo from "./InventoryInfo.svelte";
 export let InventoryItems;
+export let navToView;
+export let AuditHeader;
 
 let displayList = InventoryItems;
 let addItemForm = false;
@@ -72,7 +74,11 @@ const handleDeleteItem = (itemId) => {
 </script>
 <main>
     <div>
-        <InventoryInfo />
+        <InventoryInfo 
+            Info = {AuditHeader}
+            navToView = {navToView}
+
+        />
         <input type="text" placeholder="Search for product..." on:change={handleSearch} bind:value={searchterm}/>
         {#each displayList as Item}
             <InventoryItem
@@ -151,6 +157,7 @@ const handleDeleteItem = (itemId) => {
         border: none;
         border-bottom: 1px solid #aaaaaa;
         outline: none;
+        text-transform: uppercase;
     }
     main > div > div{
         display: flex;
